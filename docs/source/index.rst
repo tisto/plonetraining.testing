@@ -11,6 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   start.rst
+   plone-app-testing-basics
+   testing-dexterity
 
 
 Indices and tables

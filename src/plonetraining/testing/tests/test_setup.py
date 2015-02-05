@@ -13,8 +13,12 @@ class TestInstall(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
+        print('\n ---> setUp \n')
         self.portal = self.layer['portal']
         self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def tearDown(self):
+        print('\n ---> tearDown \n')
 
     def test_product_installed(self):
         """Test if plonetraining.testing is installed with portal_quickinstaller."""

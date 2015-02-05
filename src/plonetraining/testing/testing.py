@@ -18,6 +18,7 @@ class PlonetrainingTestingLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        print('\n ---> setUpZope \n')
         xmlconfig.file(
             'configure.zcml',
             plonetraining.testing,
@@ -25,23 +26,27 @@ class PlonetrainingTestingLayer(PloneSandboxLayer):
         )
 
     def setUpPloneSite(self, portal):
+        print('\n ---> setUpPloneSite \n')
         applyProfile(portal, 'plonetraining.testing:default')
+
+    def tearDownZope(self, app):
+        print('\n ---> tearDownZope \n')
+
+    def tearDownPloneSite(self, portal):
+        print('\n ---> tearDownPloneSite \n')
 
 
 PLONETRAINING_TESTING_FIXTURE = PlonetrainingTestingLayer()
-
 
 PLONETRAINING_TESTING_INTEGRATION_TESTING = IntegrationTesting(
     bases=(PLONETRAINING_TESTING_FIXTURE,),
     name='PlonetrainingTestingLayer:IntegrationTesting'
 )
 
-
 PLONETRAINING_TESTING_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(PLONETRAINING_TESTING_FIXTURE,),
     name='PlonetrainingTestingLayer:FunctionalTesting'
 )
-
 
 PLONETRAINING_TESTING_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
