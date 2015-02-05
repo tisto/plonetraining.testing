@@ -1,0 +1,3 @@
+graft src/plonetraining
+graft docs/
+include *.cfg *.rst *.in

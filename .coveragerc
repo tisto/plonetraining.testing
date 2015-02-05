@@ -1,0 +1,6 @@
+[report]
+include =
+    src/plonetraining/*
+omit =
+    */test*
+    */upgrades/*
