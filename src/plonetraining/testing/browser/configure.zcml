@@ -37,4 +37,12 @@
     permission="cmf.ReviewPortalContent"
     />
 
+  <!-- Task View JSON -->
+  <browser:page
+    name="view-json"
+    for="plonetraining.testing.interfaces.ITask"
+    class=".task.TaskViewJson"
+    permission="zope2.View"
+    />
+
 </configure>

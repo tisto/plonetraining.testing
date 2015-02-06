@@ -6,6 +6,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import logout
 
 import unittest2 as unittest
+import json
 
 
 class TaskViewIntegrationTest(unittest.TestCase):
@@ -23,7 +24,7 @@ class TaskViewIntegrationTest(unittest.TestCase):
         # Get the view
         view = getMultiAdapter((self.task, self.request), name="view")
         # Put the view into the acquisition chain
-        view = view.__of__(self.portal)
+        view = view.__of__(self.task)
         # Call the view
         self.assertTrue(view())
 
@@ -34,6 +35,18 @@ class TaskViewIntegrationTest(unittest.TestCase):
     def test_view_with_unrestricted_traverse(self):
         view = self.task.unrestrictedTraverse('view')
         self.assertTrue(view())
+
+
+class TaskViewWithBrowserlayerIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
 
     def test_view_with_browserlayer(self):
         # Make the request provide the browser layer so our view can be looked
@@ -47,9 +60,21 @@ class TaskViewIntegrationTest(unittest.TestCase):
             name="view-with-browserlayer"
         )
         # Put the view into the acquisition chain
-        view = view.__of__(self.portal)
+        view = view.__of__(self.task)
         # Call the view
         self.assertTrue(view())
+
+
+class TaskViewWithRequestParameterIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
 
     def test_view_with_request_parameter(self):
         self.request.set('term', 'foo')
@@ -57,8 +82,20 @@ class TaskViewIntegrationTest(unittest.TestCase):
             (self.task, self.request),
             name="view-with-params"
         )
-        view = view.__of__(self.portal)
+        view = view.__of__(self.task)
         self.failUnless(view())
+
+
+class TaskViewWithProtectedIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
 
     def test_view_protected(self):
         """Try to access a protected view and make sure we raise Unauthorized.
@@ -69,4 +106,35 @@ class TaskViewIntegrationTest(unittest.TestCase):
             Unauthorized,
             self.task.restrictedTraverse,
             'view-protected'
+        )
+
+
+class TaskViewJsonIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
+
+    def test_view_json(self):
+        view = getMultiAdapter(
+            (self.task, self.request),
+            name="view-json"
+        )
+        view = view.__of__(self.task)
+
+        self.assertEqual(
+            json.loads(view()),
+            {
+                u'title': u'Task',
+                u'description': u''
+            }
+        )
+        self.assertEqual(
+            view.request.response.headers.get('content-type'),
+            'application/json; charset=utf-8'
         )
