@@ -23,6 +23,7 @@ Contents
    plone-app-testing-basics
    testing-dexterity
    testing-views
+   testing-generic-setup
 
 
 Indices and tables
