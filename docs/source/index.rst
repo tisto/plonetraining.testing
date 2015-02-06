@@ -26,6 +26,7 @@ Contents
    testing-generic-setup
    testing-viewlets
    testing-portlets
+   robot-framework
 
 
 Indices and tables

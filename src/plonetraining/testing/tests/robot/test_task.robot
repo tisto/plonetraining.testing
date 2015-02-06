@@ -41,6 +41,12 @@ Scenario: As a site administrator I can add a Task
     and I submit the form
    Then a task with the title 'My Task' has been created
 
+Scenario: As a site administrator I can view a Task
+  Given a logged-in site administrator
+    and a task 'My Task'
+   When I go to the task view
+   Then I can see the task title 'My Task'
+
 
 *** Keywords *****************************************************************
 
@@ -52,6 +58,10 @@ a logged-in site administrator
 an add task form
   Go To  ${PLONE_URL}/++add++Task
 
+a task 'My Task'
+  Create content  type=Task  id=my-task  title=My Task
+
+
 # --- WHEN -------------------------------------------------------------------
 
 I type '${title}' into the title field
@@ -60,6 +70,10 @@ I type '${title}' into the title field
 I submit the form
   Click Button  Save
 
+I go to the task view
+  Go To  ${PLONE_URL}/my-task
+  Wait until page contains  Site Map
+
 
 # --- THEN -------------------------------------------------------------------
 
@@ -67,3 +81,7 @@ a task with the title '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
+
+I can see the task title '${title}'
+  Wait until page contains  Site Map
+  Page should contain  ${title}
