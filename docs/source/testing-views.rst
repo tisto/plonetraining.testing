@@ -103,16 +103,6 @@ browser/task.pt:
    :language: html
 
 
-Test View HTML Output
-=====================
-
-Test::
-
-    from lxml import html
-    output = lxml.html.fromstring(view())
-    self.assertEqual(len(output.xpath("/html/body/div")), 1)
-
-
 Troubleshooting
 ===============
 

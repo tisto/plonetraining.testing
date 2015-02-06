@@ -36,6 +36,13 @@ class TaskViewIntegrationTest(unittest.TestCase):
         view = self.task.unrestrictedTraverse('view')
         self.assertTrue(view())
 
+    def test_view_html_structure(self):
+        import lxml
+        view = getMultiAdapter((self.task, self.request), name="view")
+        view = view.__of__(self.task)
+        output = lxml.html.fromstring(view())
+        self.assertEqual(len(output.xpath("/html/body/div")), 1)
+
 
 class TaskViewWithBrowserlayerIntegrationTest(unittest.TestCase):
 
