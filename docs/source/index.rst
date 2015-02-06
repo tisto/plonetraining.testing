@@ -20,7 +20,7 @@ Contents
    :maxdepth: 2
 
    start.rst
-   plone-app-testing-basics
+   plone-testing-setup
    testing-dexterity
    testing-views
    testing-generic-setup
