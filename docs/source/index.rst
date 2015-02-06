@@ -24,6 +24,8 @@ Contents
    testing-dexterity
    testing-views
    testing-generic-setup
+   testing-viewlets
+   testing-portlets
 
 
 Indices and tables

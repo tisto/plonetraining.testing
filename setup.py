@@ -45,6 +45,7 @@ setup(
         'setuptools',
         'z3c.jbot',
         'plone.app.dexterity',
+        'plone.app.portlets',
         'lxml',
     ],
     extras_require={
