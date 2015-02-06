@@ -7,7 +7,8 @@ Test Simple View
 
 .. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-36
+   :encoding: utf-8
+   :pyobject: TaskViewIntegrationTest
 
 
 Implementation
@@ -31,33 +32,22 @@ browser/task.pt:
    :language: html
 
 
-Test View with Parameter
-========================
+Test View Browserlayer
+======================
 
 .. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-10, 39-64
+   :encoding: utf-8
+   :pyobject: TaskViewWithBrowserlayerIntegrationTest
 
 
-Implementation
---------------
+Test View with Request Parameter
+================================
 
-browser/configure.zcml:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/configure.zcml
-   :language: xml
-   :lines: 15-21
-
-browser/task.py:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/task.py
+.. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-10
-
-browser/task.pt:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/task.pt
-   :language: html
+   :encoding: utf-8
+   :pyobject: TaskViewWithRequestParameterIntegrationTest
 
 
 Test Protected View
@@ -65,7 +55,8 @@ Test Protected View
 
 .. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-10, 88-109
+   :encoding: utf-8
+   :pyobject: TaskViewProtectedIntegrationTest
 
 
 Test JSON View
@@ -73,7 +64,17 @@ Test JSON View
 
 .. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-10, 110-130
+   :encoding: utf-8
+   :pyobject: TaskViewJsonIntegrationTest
+
+
+Test XML View
+=============
+
+.. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
+   :language: python
+   :encoding: utf-8
+   :pyobject: TaskViewXmlIntegrationTest
 
 
 Test View Redirect
@@ -81,26 +82,8 @@ Test View Redirect
 
 .. literalinclude:: ../../src/plonetraining/testing/tests/test_browser_task.py
    :language: python
-   :lines: 1-10, 110-130
-
-Test::
-
-browser/configure.zcml:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/configure.zcml
-   :language: xml
-   :lines: 15-21
-
-browser/task.py:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/task.py
-   :language: python
-   :lines: 1-10,47-51
-
-browser/task.pt:
-
-.. literalinclude:: ../../src/plonetraining/testing/browser/task.pt
-   :language: html
+   :encoding: utf-8
+   :pyobject: TaskViewRedirectIntegrationTest
 
 
 Troubleshooting

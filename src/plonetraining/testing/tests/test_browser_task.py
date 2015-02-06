@@ -93,7 +93,7 @@ class TaskViewWithRequestParameterIntegrationTest(unittest.TestCase):
         self.failUnless(view())
 
 
-class TaskViewWithProtectedIntegrationTest(unittest.TestCase):
+class TaskViewProtectedIntegrationTest(unittest.TestCase):
 
     layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
 
