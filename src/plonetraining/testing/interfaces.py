@@ -18,4 +18,5 @@ class ITask(Interface):
 
     description = schema.Text(
         title=_(u"Description"),
+        required=False,
     )
