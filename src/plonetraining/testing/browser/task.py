@@ -44,6 +44,24 @@ class TaskViewJson(BrowserView):
         return json.dumps(result, indent=2, sort_keys=True)
 
 
+class TaskViewXml(BrowserView):
+
+    def __call__(self):
+        self.request.response.setHeader(
+            'Content-Type',
+            'application/xml; charset=utf-8'
+        )
+        from lxml import etree
+        root = etree.Element('task')
+        title = etree.Element('title')
+        title.text = self.context.title
+        root.append(title)
+        description = etree.Element('description')
+        description.text = self.context.description
+        root.append(etree.Element('description'))
+        return etree.tostring(root)
+
+
 class TaskViewRedirect(BrowserView):
 
     def __call__(self):

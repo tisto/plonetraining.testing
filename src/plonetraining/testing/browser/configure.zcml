@@ -45,6 +45,14 @@
     permission="zope2.View"
     />
 
+  <!-- Task View XML -->
+  <browser:page
+    name="view-xml"
+    for="plonetraining.testing.interfaces.ITask"
+    class=".task.TaskViewXml"
+    permission="zope2.View"
+    />
+
   <!-- Task View Redirect -->
   <browser:page
     name="view-redirect"

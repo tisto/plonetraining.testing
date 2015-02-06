@@ -45,6 +45,7 @@ setup(
         'setuptools',
         'z3c.jbot',
         'plone.app.dexterity',
+        'lxml',
     ],
     extras_require={
         'test': [

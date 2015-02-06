@@ -147,6 +147,37 @@ class TaskViewJsonIntegrationTest(unittest.TestCase):
         )
 
 
+class TaskViewXmlIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
+
+    def test_view_json(self):
+        view = getMultiAdapter(
+            (self.task, self.request),
+            name="view-xml"
+        )
+        view = view.__of__(self.task)
+
+        import lxml
+        output = lxml.etree.fromstring(view())
+
+        self.assertEqual(len(output.xpath("/task/title")), 1)
+        self.assertEqual(output.xpath("/task/title")[0].text, u'Task')
+        self.assertEqual(len(output.xpath("/task/description")), 1)
+        self.assertEqual(output.xpath("/task/description")[0].text, None)
+        self.assertEqual(
+            view.request.response.headers.get('content-type'),
+            'application/xml; charset=utf-8'
+        )
+
+
 class TaskViewRedirectIntegrationTest(unittest.TestCase):
 
     layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
