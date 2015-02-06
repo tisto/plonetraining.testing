@@ -11,6 +11,10 @@
 <div metal:fill-slot="content-core">
   <h1 tal:content="context/title">Task</h1>
   <p tal:content="context/description|nothing">Task Description</p>
+  <p>
+    Request Term:
+    <span tal:content="context/term|nothing">Request Term</span>
+  </p>
 </div>
 </body>
 </html>

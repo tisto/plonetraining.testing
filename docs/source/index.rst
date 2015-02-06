@@ -22,6 +22,7 @@ Contents
    start.rst
    plone-app-testing-basics
    testing-dexterity
+   testing-views
 
 
 Indices and tables

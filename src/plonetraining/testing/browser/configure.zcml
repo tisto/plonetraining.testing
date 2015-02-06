@@ -12,17 +12,29 @@
     permission="zope2.View"
     />
 
-  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
-  <browser:jbot
-    directory="overrides"
-    layer="plonetraining.testing.interfaces.IPlonetrainingTestingLayer"
+  <!-- Task View With Params -->
+  <browser:page
+    name="view-with-params"
+    for="plonetraining.testing.interfaces.ITask"
+    class=".task.TaskViewWithParams"
+    permission="zope2.View"
     />
 
-  <!-- Publish static files -->
-  <browser:resourceDirectory
-    name="plonetraining.testing"
-    directory="static"
+  <!-- Task View with Browserlayer -->
+  <browser:page
+    name="view-with-browserlayer"
+    for="plonetraining.testing.interfaces.ITask"
+    class=".task.TaskViewWithParams"
+    layer="plonetraining.testing.interfaces.IPlonetrainingTestingLayer"
+    permission="zope2.View"
+    />
+
+  <!-- Task View Protected -->
+  <browser:page
+    name="view-protected"
+    for="plonetraining.testing.interfaces.ITask"
+    class=".task.TaskViewWithParams"
+    permission="cmf.ReviewPortalContent"
     />
 
 </configure>
