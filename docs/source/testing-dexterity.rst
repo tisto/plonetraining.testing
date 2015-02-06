@@ -5,48 +5,68 @@ Part 3: Testing Dexterity
 Create simple Dexterity Type
 ----------------------------
 
-Add Dexterity to the package (setup.py)::
+Add Dexterity to the package (setup.py):
 
-    install_requires=[
-        ...
-        'plone.app.dexterity',
-    ],
+.. literalinclude:: ../../setup.py
+   :language: python
+   :lines: 43-48
+   :emphasize-lines: 45-47
 
-Make sure dexterity is installed together with the package::
 
-    <?xml version="1.0"?>
-    <metadata>
-      <version>1000</version>
-      <dependencies>
-        <dependency>profile-plone.app.dexterity:default</dependency>
-      </dependencies>
-    </metadata>
+Make sure dexterity is installed together with the package:
+
+.. literalinclude:: ../../src/plonetraining/testing/profiles/default/metadata.xml
+   :language: xml
+   :emphasize-lines: 5
+
 
 configure.zcml::
 
     <includeDependencies package="." />
 
-tests/test_task.py:
+Create profiles/default/types directory::
 
     $ mkdir profiles/default/types
 
-profiles/default/types/Task.xml:
+Create Factory Type Information (FTI) for Task Type (profiles/default/types/Task.xml):
 
+.. literalinclude:: ../../src/plonetraining/testing/profiles/default/types/Task.xml
+   :language: xml
 
-profiles/default/types.xml::
+Include Task FTI in Generic Setup Profile (profiles/default/types.xml):
 
-    <?xml version="1.0"?>
-    <object name="portal_types" meta_type="Plone Types Tool">
-      <object name="Task" meta_type="Dexterity FTI"/>
-    </object>
+.. literalinclude:: ../../src/plonetraining/testing/profiles/default/types.xml
+   :language: xml
+
 
 
 Integration Test
 ----------------
 
-tests/test_task.py::
+tests/test_task.py:
+
+.. literalinclude:: ../../src/plonetraining/testing/tests/test_task.py
+   :language: python
+   :lines: 1-43
+   :emphasize-lines: 19
+
 
 Functional Test
 ---------------
 
-tests/test_task.py::
+tests/test_task.py:
+
+.. literalinclude:: ../../src/plonetraining/testing/tests/test_task.py
+   :language: python
+   :lines: 1-15,44-
+   :emphasize-lines: 47
+
+
+Robot Test
+----------
+
+tests/robot/test_task.robot:
+
+.. literalinclude:: ../../src/plonetraining/testing/tests/robot/test_task.robot
+   :language: robotframework
+   :emphasize-lines: 37

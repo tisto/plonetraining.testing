@@ -22,4 +22,7 @@ docs/doctrees/
 docs/html/
 docs/make.bat
 docs/Makefile
+log.html
+report.html
+selenium-screenshot-*
 
