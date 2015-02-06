@@ -44,6 +44,7 @@ setup(
         'plone.api',
         'setuptools',
         'z3c.jbot',
+        'plone.app.dexterity',
     ],
     extras_require={
         'test': [
