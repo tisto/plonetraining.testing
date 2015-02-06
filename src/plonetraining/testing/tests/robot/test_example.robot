@@ -36,16 +36,14 @@ Test Teardown  Close all browsers
 
 Scenario: As a member I want to be able to log into the website
   [Documentation]  Example of a BDD-style (Behavior-driven development) test.
-  [Tags]  current
   Given a login form
    When I enter valid credentials
    Then I am logged in
 
-Scenario: Ignore me
-  [Documentation]  Example of a BDD-style (Behavior-driven development) test.
-  Given a login form
-   When I enter valid credentials
-   Then I am logged in
+Scenario: Capture Screenshot of the Login Form
+  [Tags]  screenshot
+  Go To  ${PLONE_URL}/login_form
+  Capture Page Screenshot  filename=login_form.png
 
 
 *** Keywords *****************************************************************

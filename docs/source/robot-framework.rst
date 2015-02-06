@@ -55,6 +55,13 @@ You can also run the robot test 'stand-alone' without robot-server. Though, this
 
   $ bin/test -t test_example --all
 
+Robot Framework Report
+----------------------
+
+Robot Framework creates HTML outputs that allows you to investiate test runs and failures. By default, plone.app.robotframework will write three files (log.html, output.xml and report.html into your buildout directory). Open log.html for a full report.
+
+If tests fail, robot framework will automatically create screenshots, to make it easiert to find the problem.
+
 
 Debugging Robot Framework Tests
 -------------------------------
@@ -145,6 +152,17 @@ plone.app.robotframework comes with keywords to create content::
 
 This creates a 'Task' content object with the id 'my-task' and the title 'My Task'.
 
+Screenshots
+-----------
+
+You can capture screenshots during your robot framework tests that you can ,for instance, use in your docs::
+
+Scenario: Capture Screenshot of the Login Form
+  [Tags]  screenshot
+  Go To  ${PLONE_URL}/login_form
+  Capture Page Screenshot  filename=login_form.png
+
+.. note:: See http://datakurre.pandala.org/2013/04/generate-annotated-screenshots-with.html for how to generate annotated screenshots with Robot Framework.
 
 Further Reading
 ---------------
