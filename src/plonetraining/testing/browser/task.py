@@ -1,3 +1,4 @@
+from zope.site.hooks import getSite
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -41,3 +42,10 @@ class TaskViewJson(BrowserView):
             'description': self.context.description,
         }
         return json.dumps(result, indent=2, sort_keys=True)
+
+
+class TaskViewRedirect(BrowserView):
+
+    def __call__(self):
+        portal = getSite()
+        return self.request.response.redirect(portal.absolute_url())

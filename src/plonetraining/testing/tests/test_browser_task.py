@@ -138,3 +138,29 @@ class TaskViewJsonIntegrationTest(unittest.TestCase):
             view.request.response.headers.get('content-type'),
             'application/json; charset=utf-8'
         )
+
+
+class TaskViewRedirectIntegrationTest(unittest.TestCase):
+
+    layer = PLONETRAINING_TESTING_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Task', id='task', title='Task')
+        self.task = self.portal.task
+
+    def test_view_redirect(self):
+        view = getMultiAdapter(
+            (self.task, self.request),
+            name="view-redirect"
+        )
+        view = view.__of__(self.task)
+
+        view()
+
+        self.assertEqual(
+            self.request.response.headers['location'],
+            'http://nohost/plone'
+        )

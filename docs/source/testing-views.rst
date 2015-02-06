@@ -85,24 +85,23 @@ Test View Redirect
 
 Test::
 
-    def test_component_view(self):
-        self.portal.mi.sec.invokeFactory(
-            "TextComponent",
-            id="tx",
-            title="Text Component 1",
-        )
-        view = getMultiAdapter(
-            (self.portal.mi.sec.tx, self.request),
-            name="view"
-        )
-        view = view.__of__(self.portal.mi.sec)
+browser/configure.zcml:
 
-        view()
+.. literalinclude:: ../../src/plonetraining/testing/browser/configure.zcml
+   :language: xml
+   :lines: 15-21
 
-        self.assertEqual(
-            self.request.response.headers['location'],
-            'http://nohost/plone/mi/sec'
-        )
+browser/task.py:
+
+.. literalinclude:: ../../src/plonetraining/testing/browser/task.py
+   :language: python
+   :lines: 1-10,47-51
+
+browser/task.pt:
+
+.. literalinclude:: ../../src/plonetraining/testing/browser/task.pt
+   :language: html
+
 
 Test View HTML Output
 =====================
