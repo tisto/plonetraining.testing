@@ -39,6 +39,13 @@ Include Task FTI in Generic Setup Profile (profiles/default/types.xml):
    :language: xml
 
 
+Interface
+---------
+
+interface.py:
+
+.. literalinclude:: ../../src/plonetraining/testing/interface.py
+   :language: python
 
 Integration Test
 ----------------
