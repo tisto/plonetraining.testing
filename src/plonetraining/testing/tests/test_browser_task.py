@@ -41,7 +41,7 @@ class TaskViewIntegrationTest(unittest.TestCase):
         view = getMultiAdapter((self.task, self.request), name="view")
         view = view.__of__(self.task)
         output = lxml.html.fromstring(view())
-        self.assertEqual(len(output.xpath("/html/body/div")), 1)
+        self.assertEqual(1, len(output.xpath("/html/body/div")))
 
 
 class TaskViewWithBrowserlayerIntegrationTest(unittest.TestCase):
@@ -135,15 +135,15 @@ class TaskViewJsonIntegrationTest(unittest.TestCase):
         view = view.__of__(self.task)
 
         self.assertEqual(
-            json.loads(view()),
             {
                 u'title': u'Task',
                 u'description': u''
-            }
+            },
+            json.loads(view())
         )
         self.assertEqual(
+            'application/json; charset=utf-8',
             view.request.response.headers.get('content-type'),
-            'application/json; charset=utf-8'
         )
 
 
@@ -173,8 +173,8 @@ class TaskViewXmlIntegrationTest(unittest.TestCase):
         self.assertEqual(len(output.xpath("/task/description")), 1)
         self.assertEqual(output.xpath("/task/description")[0].text, None)
         self.assertEqual(
-            view.request.response.headers.get('content-type'),
-            'application/xml; charset=utf-8'
+            'application/xml; charset=utf-8',
+            view.request.response.headers.get('content-type')
         )
 
 
@@ -199,6 +199,6 @@ class TaskViewRedirectIntegrationTest(unittest.TestCase):
         view()
 
         self.assertEqual(
-            self.request.response.headers['location'],
-            'http://nohost/plone'
+            'http://nohost/plone',
+            self.request.response.headers['location']
         )

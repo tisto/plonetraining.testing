@@ -69,8 +69,8 @@ class TaskFunctionalTest(unittest.TestCase):
         self.browser.getControl("Save").click()
 
         self.assertEqual(
+            "My Task",
             self.portal['my-task'].title,
-            "My Task"
         )
 
     def test_view_task(self):
