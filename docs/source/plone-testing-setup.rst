@@ -22,9 +22,9 @@ Testing Layers
 
 5) test_setup.py: tearDown
 
-6) tearDownZope(self, app)
+6) tearDownPloneSite(self, portal)
 
-7) tearDownPloneSite(self, portal)
+7) tearDownZope(self, app)
 
 
 tests/test_setup.py
